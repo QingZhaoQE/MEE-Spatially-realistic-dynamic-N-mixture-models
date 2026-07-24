@@ -28,12 +28,12 @@ code <- nimbleCode({
     for (t in 2:nyear) {
       rho[i,t-1] <- exp(
         beta_rho_int[x[i]] + 
-        beta_rho_ddp * (N[i,t-1] - mean(exp(beta0[1:2]))) / mean(exp(beta0[1:2])) / area[i] )
+        beta_rho_ddp * (N[i,t-1] - mean(exp(beta0[1:2]))) / mean(exp(beta0[1:2])) / a[i] )
 
       for (j in 1:nsite) {
         eta[i,j,t-1] <- exp(
           -1 * kappa[x[i]] * d[i,j] + 
-          beta_eta_ddp * (N[i,t-1] - mean(exp(beta0[1:2]))) / mean(exp(beta0[1:2])) / area[i] ) 
+          beta_eta_ddp * (N[i,t-1] - mean(exp(beta0[1:2]))) / mean(exp(beta0[1:2])) / a[i] ) 
       } # j
       theta[i,1:nsite,t-1] <- eta[i,1:nsite,t-1] / sum(eta[i,1:nsite,t-1])
 
